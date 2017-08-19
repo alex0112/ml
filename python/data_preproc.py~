@@ -1,0 +1,16 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.preprocessing import Imputer
+
+dataset = pd.read_csv('../moar_data/Data.csv') ## Import the data.  Duh. 
+X = dataset.iloc[:, :-1].values  ## Select All of the values (i.e. not numbers or headers) and then remove the last column (X is the independent var)
+y = dataset.iloc[:, 3].values ## Get the dependent var
+imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
+imputer = imputer.fit(X[:, 1:3])
+
+
+print(X)
+
+
+
