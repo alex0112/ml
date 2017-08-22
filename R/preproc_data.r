@@ -12,5 +12,19 @@ dataset$Salary = ifelse(is.na(dataset$Salary),
                      dataset$Salary
                      )
 
+## Encode categorical data for Country column:
+dataset$Country = factor(dataset$Country
+                         levels = c('France', 'Spain', 'Germany'),
+                         labels = c(1, 2, 3)
+                         )
+## Encode categorical data for dependent var:
+dataset$Country = factor(dataset$Purchased
+                         levels = c('No', 'Yes'),
+                         labels = c(0, 1)
+                         )
+
+
+
+
 print(dataset)
 
