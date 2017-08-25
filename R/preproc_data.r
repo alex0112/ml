@@ -36,6 +36,9 @@ training_set = subset(dataset, split == TRUE) ## Select all the data from the da
 test_set = subset(dataset, split == FALSE) ## Ditto, but where false.
 
 
+training_set[,2:3] = scale(training_set[,2:3])
+test_set[,2:3] = scale(test_set[,2:3])
+
 print("dataset:")
 print(dataset)
 print("*************************************************")
