@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.cross_validation import train_test_split
 
 ## Get the data:
 dataset = pd.read_csv('../moar_data/Data.csv') ## Import the data.  Duh. 
@@ -29,9 +30,16 @@ X = onehotencoder.fit_transform(X).toarray()
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y) # fit_transform is your friend.
 
+## Split the dataset into the training set, and test set.
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+
 
 
 print(X)
 print('****************************************************************************')
 print(y)
-
+print('****************************************************************************')
+print(X_train, X_test)
+print('****************************************************************************')
+print(y_train, y_test)
