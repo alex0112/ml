@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.cross_validation import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 ## Get the data:
 dataset = pd.read_csv('../moar_data/Data.csv') ## Import the data.  Duh. 
@@ -34,7 +35,10 @@ y = labelencoder_y.fit_transform(y) # fit_transform is your friend.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 
-
+## Scale features:
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
 
 print(X)
 print('****************************************************************************')
