@@ -18,4 +18,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, rando
 
 ## Simple linear regression:
 regressor = LinearRegression()
-regressor.fit(X_train, y_train))
+regressor.fit(X_train, y_train)
+
+## Make the prediction:
+y_pred = regressor.predict(X_test)
+
+## Visualize the data:
+plt.scatter(X_train, y_train, color='red')
+plt.scatter(X_test, y_pred, color='green')
+plt.plot(X_train, regressor.predict(X_train), color='blue')
+plt.title("Salary vs. XP (Training)")
+plt.xlabel("XP")
+plt.ylabel("$$$")
+plt.show()
