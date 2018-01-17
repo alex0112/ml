@@ -18,10 +18,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, rando
 
 ## Simple linear regression:
 regressor = LinearRegression()
-regressor.fit(X_train, y_train)
+regressor.fit(X_train, y_train)  ## This means:  "From the data I have provided calculate the line of best fit to all of the points on the scatter plot"
 
 ## Make the prediction:
-y_pred = regressor.predict(X_test)
+y_pred = regressor.predict(X_test)  ## This means: "Given an x value, where does that x value intersect with the line I fitted to this data (on the y axis) i.e. what's the y value of the point on the line of best fit that matches this x value?"
 
 ## Visualize the data:
 plt.scatter(X_train, y_train, color='red')
