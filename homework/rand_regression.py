@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
-TRAIN_DATA_PATH = '../datafiles/homework/simple_linear_regression/train.csv'
-TEST_DATA_PATH  = '../datafiles/homework/simple_linear_regression/test.csv'
+TRAIN_DATA_PATH = './simple_linear_regression/train.csv'
+TEST_DATA_PATH  = './simple_linear_regression/test.csv'
 
 ## Slurp the csv
 train_data = pd.read_csv(TRAIN_DATA_PATH)
