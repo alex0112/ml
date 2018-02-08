@@ -61,13 +61,10 @@ X = np.append(
 
 ## Define the set of optimal features
 import os
+from dumper import dump
 os.system('clear')
-
-print("****************************************X*****************************************")
-print(X,"\n\n")
+#np.set_printoptions(threshold=np.inf)
 X_opt = X[:, [0, 1, 2, 3, 4, 5]]
-print("****************************************X_opt*****************************************")
-print(X_opt,"\n\n")
 
 ## 1. Select a significance level
 SL = 0.05
@@ -77,37 +74,17 @@ SL = 0.05
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 
 # 3. Consider the predictor with the highest P-Value (probability value) If P > SL (Probability Value > Significance Level) then go to step 4, otherwise go to FIN (meaning, finish)
-p_vals = regressor_OLS.pvalues
+p_vals              = regressor_OLS.pvalues
+highest_p_val       = max(p_vals)
+highest_p_val_index = list(p_vals).index(highest_p_val)
+predictors          = X_opt
 
-print("****************************************p_vals*****************************************")
-print(p_vals)
-highest_p_val = max(p_vals)
-predictors = X_opt
+import time
+while (highest_p_val > SL):
+    highest_p_val_index = list(p_vals).index(highest_p_val)
+    predictors          = np.delete(predictors, highest_p_val_index, axis=1)
+    regressor_OLS       = sm.OLS(endog = y, exog = predictors).fit()
+    p_vals              = regressor_OLS.pvalues
+    highest_p_val       = max(p_vals)
 
-print("****************************************predictors*****************************************")
-print(predictors, "\n\n")
-
-print("\n\n\n\n\n\n")
-# print("Backward Elimination:")
-# while (highest_p_val > SL):
-#     p_to_pred = dict(zip(p_vals, predictors))
-#     highest_pred = p_to_pred[max(list(p_to_pred.keys()))]
-
-#     print("&&&&&&&&&&&&&&&&&&&&&&&&&\n")
-#     print(p_to_pred)
-#     print("&&&&&&&&&&&&&&&&&&&&&&&&&\n")
-#     print(highest_pred)
-#     print("&&&&&&&&&&&&&&&&&&&&&&&&&\n")
-
-#     ## New regressor
-#     predictors = predictors.tolist().remove(highest_pred)
-#     regressor_OLS = sm.OLS(endog = y, exog = predictors).fit()
-#     p_vals = regressor_OLS.pvalues[:]
-#     print(regressor_OLS.summary())
-#     print(regressor_OLS.pvalues)
-#     if (max(p_vals) > SL):
-#         break
-
-#     print(regressor_OLS.summary())
-#     print(regressor_OLS.pvalues)
-    
+print(regressor_OLS.summary())
