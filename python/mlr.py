@@ -43,12 +43,15 @@ regressor.fit(X_train, y_train)
 ## Predicting the Test set results
 y_prediction = regressor.predict(X_test)
 
-## Backward elimination:  (Eliminate less statistically significant variables)
-# 1. Select a significance level
-# 2. Fit the model with possible predictors
-# 3. Consider the predictor with the highest P-Value (probability value) If P > SL (Probability Value > Significance Level) then go to step 4, otherwise go to FIN (meaning, finish)
-# 4. Remove the variable
-# 5. Go back to step three and fit the model without the variable (the predictor that failed the conditional)
+#############################################################################################################################################
+# Backward elimination:  (Eliminate less statistically significant variables)                                                               #
+# 1. Select a significance level                                                                                                            #
+# 2. Fit the model with possible predictors                                                                                                 #
+# 3. Consider the predictor with the highest P-Value (probability value) If P > SL (Probability Value > Significance Level) then go to step #
+# four, otherwise go to FIN (meaning, finish)                                                                                               #
+# 4. Remove the variable                                                                                                                    #
+# 5. Go back to step three and fit the model without the variable (the predictor that failed the conditional)                               #
+#############################################################################################################################################
 
 ## Build the model:  
 X = np.append(
@@ -60,10 +63,6 @@ X = np.append(
 #X = np.append(arr = np.ones(shape = (50, 1)).astype(int), values = X, axis = 1)  ## Add a column of ones to our matrix of features (X)
 
 ## Define the set of optimal features
-import os
-from dumper import dump
-os.system('clear')
-#np.set_printoptions(threshold=np.inf)
 X_opt = X[:, [0, 1, 2, 3, 4, 5]]
 
 ## 1. Select a significance level
