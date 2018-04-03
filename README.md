@@ -1,2 +1,2 @@
 # ml
-Some code from a machine learning course
+Code from a machine learning course
